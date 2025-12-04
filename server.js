@@ -129,12 +129,12 @@ app.post('/api/contact', (req, res) => {
 });
 
 // --- STATIC FRONTEND SERVING ---
-const publicDir = path.join(__dirname, 'public');
-app.use(express.static(publicDir));
+// Serve static files (HTML, CSS, JS, images) from the project root
+app.use(express.static(__dirname));
 
-// For any other route, send the main index.html
+// For any non-API route, send the main index.html from the root folder
 app.get('*', (req, res) => {
-  res.sendFile(path.join(publicDir, 'index.html'));
+  res.sendFile(path.join(__dirname, 'index.html'));
 });
 
 // --- START SERVER ---
